@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" media="all"
+	th:href="@{/css/alumno.css}" />
+<title th:text="#{title.home}">Home</title>
+</head>
+<body>
+	<header>
+		<h1 th:text="#{welcome.home}">Welcome page</h1>
+		<h2 th:text="#{list.of.users}">Users</h2>
+	</header>
+	<div id="search">
+		<form action="#" th:action="@{/}" th:object="${alumno}" method="post">
+			<p>
+				<span>DNI</span> <input type="text" th:field="*{dni}"
+					placeholder="Ingrese el DNI" />
+			</p>
+			<p>
+				<span th:text="#{table.user.name}">Name</span> <input type="text"
+					th:field="*{nombre}" placeholder="Text Input" />
+			</p>
+			<p>
+				<span th:text="#{table.user.apellido}">Surname</span> <input
+					th:field="*{apellido}" type="text" placeholder="Text Input" />
+			</p>
+			<p>
+				<span>A&ntilde;o</span> <select th:field="*{ano}">
+					<option value="0"></option>
+					<option value="1">1</option>
+					<option value="2">2</option>
+					<option value="3">3</option>
+					<option value="4">4</option>
+				</select>
+			</p>
+			<p>
+				<span>Curso</span> <select th:field="*{curso}">
+					<option value="0"></option>
+					<option value="1">1</option>
+					<option value="2">2</option>
+					<option value="3">3</option>
+					<option value="4">4</option>
+				</select>
+			</p>
+			<p>
+				<input type="submit" value="Buscar" />
+			</p>
+		</form>
+	</div>
+	<div class="seedstarterlist" th:unless="${#lists.isEmpty(alumnos)}">
+		<table>
+			<thead>
+				<tr>
+					<th th:text="#{table.user.dni}">Dni</th>
+					<th th:text="#{table.user.name}">Name</th>
+					<th th:text="#{table.user.apellido}">Surname</th>
+					<th th:text="#{table.user.ano}">Surname</th>
+					<th th:text="#{table.user.curso}">Surname</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="alumno : ${alumnos}">
+					<td th:text="${alumno.dni}">Dni</td>
+					<td th:text="${alumno.nombre}">Name</td>
+					<td th:text="${alumno.apellido}">Surname</td>
+					<td th:text="${alumno.ano}">Year</td>
+					<td th:text="${alumno.curso}">Course</td>
+					<td><a th:text="#{table.editar}"
+						th:href="@{/edit/{id}(id=${alumno.id})}">Edit</a></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</body>
+</html>

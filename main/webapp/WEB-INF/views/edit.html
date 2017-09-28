@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" media="all"
+	th:href="@{/css/alumno.css}" />
+<title>Insert title here</title>
+</head>
+<body>
+	<div id="edit">
+		<form action="#" th:action="@{/edit}" th:object="${alumno}" method="post">
+			<input type="hidden" th:field="*{id}" />
+			<p>
+				<span>DNI</span> <input type="text" th:field="*{dni}"
+					placeholder="Ingrese el DNI" />
+			</p>
+			<p>
+				<span th:text="#{table.user.name}">Name</span> <input type="text"
+					th:field="*{nombre}" placeholder="Text Input" />
+			</p>
+			<p>
+				<span th:text="#{table.user.apellido}">Surname</span> <input
+					th:field="*{apellido}" type="text" placeholder="Text Input" />
+			</p>
+			<p>
+				<span>A&ntilde;o</span> <select th:field="*{ano}">
+					<option value="0"></option>
+					<option value="1">1</option>
+					<option value="2">2</option>
+					<option value="3">3</option>
+					<option value="4">4</option>
+				</select>
+			</p>
+			<p>
+				<span>Curso</span> <select th:field="*{curso}">
+					<option value="0"></option>
+					<option value="1">1</option>
+					<option value="2">2</option>
+					<option value="3">3</option>
+					<option value="4">4</option>
+				</select>
+			</p>
+			<p>
+				<input type="submit" value="Submit" />
+			</p>
+		</form>
+	</div>
+</body>
+</html>
